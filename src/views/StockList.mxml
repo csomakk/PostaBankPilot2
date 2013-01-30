@@ -4,17 +4,20 @@
          xmlns:mx="library://ns.adobe.com/flex/mx" width="640" height="960" xmlns:renderers="views.renderers.*">
     <fx:Script>
         <![CDATA[
+            import Classes.ConfigurableArrayCollection;
+            
             import config.AppContext;
             
             import mx.collections.ArrayCollection;
             import mx.events.FlexEvent;
             
-            public var ac:ArrayCollection;
+            [Inject]
+            public var ac:ConfigurableArrayCollection;
             
             [Init]
             public function init():void {
                 list.dataProvider = ac;
-            }
+            }   
             
         ]]>
     </fx:Script>
