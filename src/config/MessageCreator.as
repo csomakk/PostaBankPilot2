@@ -3,6 +3,7 @@ package config
     import Classes.ConfigurableArrayCollection;
     import Classes.Stock;
     
+    import flash.utils.Dictionary;
     import flash.utils.setTimeout;
 
     public class MessageCreator
@@ -13,13 +14,17 @@ package config
            // randomize();
         }
         
+        
+        
         [MessageDispatcher]
         public var dispatcher:Function;
         
         [Inject]
         public var stockCollection:ConfigurableArrayCollection;
         
-        private function randomize():void
+        
+        [Init]
+        public function randomize():void
         {
             stockCollection.turnOff();
             
