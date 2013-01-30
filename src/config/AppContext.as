@@ -23,12 +23,12 @@ package config
                 dictionary = new Dictionary(false);
             
                 stockCollection = new ConfigurableArrayCollection([
-                new Stock('DOW J', 12153.68, 12153.68 - 259.89),
-                new Stock('NASDAQ', 2678.75, 2678.75 - 53.6),
-                new Stock('S&P 500', 1263.85, 1263.85 - 24.16),
-                new Stock('AAPL', 384.62, 384.62 + 0.60),
-                new Stock('GOOG', 608.35, 608.35 - 13.27),
-                new Stock('YHOO', 16.27, 16.27 - 0.32),
+                new Stock('DOW J', 12153.68, 12153.68 * 2.5989),
+                new Stock('NASDAQ', 2678.75, 2678.75 * .536),
+                new Stock('S&P 500', 1263.85, 1263.85 * .2416),
+                new Stock('AAPL', 384.62, 384.62 * -.060),
+                new Stock('GOOG', 608.35, 608.35 * .1327),
+                new Stock('YHOO', 16.27, 16.27 * -.032),
             ])
             refreshDictionary();        
                            

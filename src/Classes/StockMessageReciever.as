@@ -31,12 +31,12 @@ package Classes
                 handleMessage(array.pop());
             }
         }
-        /*
+        
         [MessageHandler]
         public function handleArrayMessage (array:Array) : void {
-            throw new Error("nonono");
+            throw new Error("Unhandled Message at StockMessageReciever:handleArrayMessage ");
         }
-        */
+        
         
     }
 }

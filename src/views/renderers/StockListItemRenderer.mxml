@@ -24,7 +24,7 @@
             public var stockChange:String = new String();
                         
             public function setChangeDirection(o:*=null):void {
-                var difference:Number = (data as Stock).yesterday / ( (data as Stock).value - (data as Stock).yesterday) / 100 ;
+                var difference:Number = (data as Stock).yesterday / ( (data as Stock).value - (data as Stock).yesterday) ;
                 var absDifference:Number;
                                
                 if(difference < 0) {
