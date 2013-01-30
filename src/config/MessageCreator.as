@@ -9,6 +9,7 @@ package config
     {
         public function MessageCreator()
         {
+           // dispatcher(new StockMessage("NASDAQ", 45654, 45489));
            // randomize();
         }
         
