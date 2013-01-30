@@ -9,8 +9,6 @@
             import mx.collections.ArrayCollection;
             import mx.events.FlexEvent;
             
-            [Inject]
-            [Bindable]
             public var ac:ArrayCollection;
             
             [Init]

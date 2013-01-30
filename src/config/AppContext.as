@@ -13,8 +13,8 @@ package config
 	public class AppContext
 	{
         
-        [MessageDispatcher]
-        public var dispatcher:Function;
+        //[MessageDispatcher]
+        //public var dispatcher:Function;
         
 		public function AppContext()
 		{
@@ -49,7 +49,7 @@ package config
                 var stock:Stock = stockCollection.source[int(Math.random()*stockCollection.length)] as Stock;
                 var change:Number = (Math.random() - 0.5) * stock.yesterday;
                 stock.value += change;
-                dispatcher(new StockMessage(stock.name, stock.value, stock.yesterday));
+                //dispatcher(new StockMessage(stock.name, stock.value, stock.yesterday));
             }
             setTimeout(randomize, 50)
             
