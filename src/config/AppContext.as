@@ -7,6 +7,7 @@ package config
     import flash.utils.Dictionary;
     
     import views.StockListGroup;
+    import Classes.StockMessageGenerator;
 
 	public class AppContext
 	{

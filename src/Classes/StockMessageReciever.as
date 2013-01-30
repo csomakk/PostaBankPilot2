@@ -1,6 +1,5 @@
 package Classes
 {
-    import config.StockMessage;
     
     import flash.utils.Dictionary;
 
@@ -27,12 +26,17 @@ package Classes
         }
         
         [MessageHandler]
-        public function handleArrayMessage (array:Array) : void {
+        public function handleStockMessageArray (array:StockMessageArray) : void {
             while(array.length>0){
                 handleMessage(array.pop());
             }
         }
-        
+        /*
+        [MessageHandler]
+        public function handleArrayMessage (array:Array) : void {
+            throw new Error("nonono");
+        }
+        */
         
     }
 }

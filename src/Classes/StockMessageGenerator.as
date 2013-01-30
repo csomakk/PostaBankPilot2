@@ -1,7 +1,5 @@
-package config
+package Classes
 {
-    import Classes.ConfigurableArrayCollection;
-    import Classes.Stock;
     
     import flash.utils.Dictionary;
     import flash.utils.setTimeout;
@@ -27,18 +25,23 @@ package config
             
             for( var i:int = 0; i < 50; i++) {
                 var stop:int = Math.random()*10;
-                var array:Array = new Array();
+                var array:StockMessageArray = new StockMessageArray();
                 for(var j:int = 0; j < stop; j++){
                     var stock:Stock = stockCollection.source[int(Math.random()*stockCollection.length)] as Stock;
-                    var change:Number = (Math.random() - 0.5) * stock.yesterday * 0.1;
-                    array.push(new StockMessage(stock.name, stock.value + change, stock.yesterday));
+                    var change:Number = (Math.random() - 0.5) * 0.01 * stock.yesterday;
+                    array.push(
+                        new StockMessage(
+                            stock.name, 
+                            stock.value + change, 
+                            stock.yesterday
+                        ));
                 }
                 dispatcher(array);
             }
             
             stockCollection.turnOn();
             
-            setTimeout(randomize, 50)
+            setTimeout(randomize, 50);
         }
     }
 }

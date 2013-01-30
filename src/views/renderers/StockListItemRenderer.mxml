@@ -24,7 +24,7 @@
             public var stockChange:String = new String();
                         
             public function setChangeDirection(o:*=null):void {
-                var difference:Number =  (data as Stock).value - (data as Stock).yesterday;
+                var difference:Number = (data as Stock).yesterday / ( (data as Stock).value - (data as Stock).yesterday) / 100 ;
                 var absDifference:Number;
                                
                 if(difference < 0) {
@@ -42,14 +42,24 @@
                     edgeRectFillColor.color = 0x3E6310;
                     changeDirectionTetxt.text = "+"
                 } 
-                   
-                stockChange = absDifference.toFixed(Constants.decimals);
-            } 
+                if(absDifference > 10) {
+                    dailyChange.setStyle("fontSize", 30);
+                    changeDirectionShadow.setStyle("fontSize", 30);
+                } else {
+                    dailyChange.setStyle("fontSize", 40);
+                    changeDirectionShadow.setStyle("fontSize", 40);
+                }
+                stockChange = absDifference.toFixed(Constants.decimals) + "%";
+            }
+            
+            public function setValue(o:*=null):void{
+                stockValue = (data as Stock).value.toFixed(Constants.decimals)
+            }
             
             protected function itemrenderer1_dataChangeHandler(event:FlexEvent = null):void
             {   
                 
-                BindingUtils.bindProperty(this, "stockValue", data, "value");
+                BindingUtils.bindSetter(setValue, data, "value");
                 BindingUtils.bindSetter(setChangeDirection, data, "value");
                
                 stockName = (data as Stock).name
@@ -93,16 +103,11 @@
              id="value"
              text="{stockValue}"
              textAlign="right"/>
-    <s:Label id="dailyChange"
-             x="460" y="25" width="129" height="45" 
-             color="#000000" fontSize="45" fontWeight="bold"
-             text="{stockChange}" 
-             textAlign="right"/>
-    <s:Label id="changeDirectionShadow"  
-             x="460" y="27" width="129" height="45" 
-             color="#FFFFFF" fontSize="45" fontWeight="bold"
-             text="{stockChange}"
-             textAlign="right"/>
+    <s:Label id="dailyChange" x="425" y="25" width="164" height="45" color="#000000" fontSize="40"
+             fontWeight="bold" text="{stockChange}" textAlign="right" verticalAlign="middle"/>
+    <s:Label id="changeDirectionShadow" x="425" y="27" width="164" height="45" color="#FFFFFF"
+             fontSize="40" fontWeight="bold" text="{stockChange}" textAlign="right"
+             verticalAlign="middle"/>
     <s:Label id="changeDirectionTetxt" 
              x="441" y="27" width="33" height="45" 
              color="#FFFFFF" fontSize="45" 

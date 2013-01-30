@@ -1,4 +1,4 @@
-package config
+package Classes
 {
     public class StockMessage
     {
