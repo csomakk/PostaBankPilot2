@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:s="library://ns.adobe.com/flex/spark"
+                xmlns:mx="library://ns.adobe.com/flex/mx"
+                contentBackgroundColor="0xABB3C6" 
+                dataChange="itemrenderer1_dataChangeHandler(event)"
+                width="609" height="87" autoDrawBackground="true">
+    <fx:Script>
+        <![CDATA[
+            import Classes.Stock;
+            
+            import config.Constants;
+            
+            import mx.binding.utils.BindingUtils;
+            import mx.events.FlexEvent;
+            
+            import org.spicefactory.parsley.core.binding.BindingManager;
+            
+            [Bindable]
+            public var stockName:String = new String();
+            [Bindable]
+            public var stockValue:String=new String();
+            [Bindable]
+            public var stockChange:String = new String();
+                        
+            public function setChangeDirection(o:*=null):void {
+                var diff:Number =  (data as Stock).value - (data as Stock).yesterday;
+                var abs:Number;
+                               
+                if(diff < 0) {
+                    abs = -diff;
+                    gradient1.color = 0xA63F3F;
+                    gradient2.color = 0x8C2A26;
+                    gradient3.color = 0x862D28;
+                    edgeRectFillColor.color = 0x691e1c;
+                    changeDirectionTetxt.text = "-"
+                } else {
+                    abs = diff;
+                    gradient1.color = 0x8CB15B;
+                    gradient2.color = 0x709635;
+                    gradient3.color = 0x6B9135;
+                    edgeRectFillColor.color = 0x3E6310;
+                    changeDirectionTetxt.text = "+"
+                } 
+                   
+                stockChange = abs.toFixed(Constants.decimals);
+            } 
+            
+            protected function itemrenderer1_dataChangeHandler(event:FlexEvent = null):void
+            {   
+                
+                BindingUtils.bindProperty(this, "stockValue", data, "value");
+                BindingUtils.bindSetter(setChangeDirection, data, "value");
+               
+                stockName = (data as Stock).name
+                
+            }
+            
+        ]]>
+    </fx:Script>
+    <s:Rect x="429" y="10" width="170" height="68" radiusX="15" radiusY="15">
+        <s:fill>
+            <s:SolidColor id="edgeRectFillColor" />
+        </s:fill>
+    </s:Rect>
+    <s:Rect x="433" y="14" width="162" height="60" radiusX="10" radiusY="10" >
+        <s:fill>
+            <s:LinearGradient rotation="90" >
+                <s:GradientEntry id="gradient1" />
+                <s:GradientEntry id="gradient2" />
+                <s:GradientEntry id="gradient3" />
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>
+    
+   <s:Label x="11" y="25" width="222"  height="45" 
+             color="#000000" 
+             fontSize="45" fontWeight="bold" 
+             text="{stockName}"/>
+    <s:Label x="11" y="27" width="222"  height="45"
+             id="nameLabel"
+             color="#FFFFFF" 
+             fontSize="45" fontWeight="bold" 
+             text="{stockName}"/>
+    <s:Label x="206" y="25" width="211"  height="45" 
+             color="#000000" fontSize="45" 
+             fontWeight="bold" 
+             text="{stockValue}"
+             textAlign="right"/>
+    <s:Label x="206" y="27" width="211"  height="45" 
+             color="#FFFFFF" fontSize="45" 
+             fontWeight="bold" 
+             id="value"
+             text="{stockValue}"
+             textAlign="right"/>
+    <s:Label id="dailyChange"
+             x="460" y="25" width="129" height="45" 
+             color="#000000" fontSize="45" fontWeight="bold"
+             text="{stockChange}" 
+             textAlign="right"/>
+    <s:Label id="changeDirectionShadow"  
+             x="460" y="27" width="129" height="45" 
+             color="#FFFFFF" fontSize="45" fontWeight="bold"
+             text="{stockChange}"
+             textAlign="right"/>
+    <s:Label id="changeDirectionTetxt" 
+             x="441" y="27" width="33" height="45" 
+             color="#FFFFFF" fontSize="45" 
+             fontWeight="bold" text="+"
+             textAlign="left"/>
+</s:ItemRenderer>

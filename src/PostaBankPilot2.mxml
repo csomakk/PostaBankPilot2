@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark"  backgroundColor="0x000000"
+               creationComplete="application1_creationCompleteHandler(event)"
+               xmlns:parsleyflex="http://www.spicefactory.org/parsley/flex" xmlns:parsley="http://www.spicefactory.org/parsley"
+               xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+    <fx:Script>
+        <![CDATA[
+            import views.StockList;
+            import config.AppContext;
+            
+            import mx.events.FlexEvent;
+            
+            protected function application1_creationCompleteHandler(event:FlexEvent):void
+            {
+                dispatchEvent(new Event("configureView"));    
+            }
+            
+            [Init]
+            public function init():void{
+                trace("initdd")
+                addElement(stockList);
+            }
+            
+            [Inject]
+            public var stockList:StockList;
+            
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <parsley:ContextBuilder config="{AppContext}"/>
+    </fx:Declarations>
+</s:Application>
