@@ -24,18 +24,18 @@
             public var stockChange:String = new String();
                         
             public function setChangeDirection(o:*=null):void {
-                var diff:Number =  (data as Stock).value - (data as Stock).yesterday;
-                var abs:Number;
+                var difference:Number =  (data as Stock).value - (data as Stock).yesterday;
+                var absDifference:Number;
                                
-                if(diff < 0) {
-                    abs = -diff;
+                if(difference < 0) {
+                    absDifference = -difference;
                     gradient1.color = 0xA63F3F;
                     gradient2.color = 0x8C2A26;
                     gradient3.color = 0x862D28;
                     edgeRectFillColor.color = 0x691e1c;
                     changeDirectionTetxt.text = "-"
                 } else {
-                    abs = diff;
+                    absDifference = difference;
                     gradient1.color = 0x8CB15B;
                     gradient2.color = 0x709635;
                     gradient3.color = 0x6B9135;
@@ -43,7 +43,7 @@
                     changeDirectionTetxt.text = "+"
                 } 
                    
-                stockChange = abs.toFixed(Constants.decimals);
+                stockChange = absDifference.toFixed(Constants.decimals);
             } 
             
             protected function itemrenderer1_dataChangeHandler(event:FlexEvent = null):void

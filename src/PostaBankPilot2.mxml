@@ -6,7 +6,7 @@
                xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
     <fx:Script>
         <![CDATA[
-            import views.StockList;
+            import views.StockListGroup;
             import config.AppContext;
             
             import mx.events.FlexEvent;
@@ -17,13 +17,13 @@
             }
             
             [Init]
-            public function init():void{
-                trace("initdd")
+            public function parsleyInit():void{
+                trace("PostaBankPilot2: parsleyInit")
                 addElement(stockList);
             }
             
             [Inject]
-            public var stockList:StockList;
+            public var stockList:StockListGroup;
             
         ]]>
     </fx:Script>

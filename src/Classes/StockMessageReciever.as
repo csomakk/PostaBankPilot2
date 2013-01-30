@@ -18,12 +18,21 @@ package Classes
         
         [Init]
         public function init():void{
-            trace("recieverready")
+            trace("StockMessageReciever: init")
         }
         
         [MessageHandler]
         public function handleMessage (message:StockMessage) : void {
-           (dictionary[message.name] as Stock).value = message.latest;
+            (dictionary[message.name] as Stock).value = message.latest;
         }
+        
+        [MessageHandler]
+        public function handleArrayMessage (array:Array) : void {
+            while(array.length>0){
+                handleMessage(array.pop());
+            }
+        }
+        
+        
     }
 }

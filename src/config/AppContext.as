@@ -5,29 +5,20 @@ package config
     import Classes.StockMessageReciever;
     
     import flash.utils.Dictionary;
-    import flash.utils.setTimeout;
     
-    import mx.collections.ArrayCollection;
-    import mx.events.CollectionEvent;
-    
-    import org.spicefactory.parsley.core.messaging.receiver.MessageReceiver;
-    
-    import views.StockList;
+    import views.StockListGroup;
 
 	public class AppContext
 	{
         
-        public var messageCreator:MessageCreator
-        public var messageReciever:StockMessageReciever
-        
-        public var sl:StockList;
+        public var messageCreator:StockMessageGenerator;
+        public var messageReciever:StockMessageReciever;
+        public var stockListGroup:StockListGroup;
         public var stockCollection:ConfigurableArrayCollection;
-        
-        public var dictionary:Dictionary
+        public var dictionary:Dictionary;
         
 		public function AppContext()
 		{
-            
                 dictionary = new Dictionary(false);
             
                 stockCollection = new ConfigurableArrayCollection([
@@ -38,15 +29,13 @@ package config
                 new Stock('GOOG', 608.35, 608.35 - 13.27),
                 new Stock('YHOO', 16.27, 16.27 - 0.32),
             ])
-                    
+            refreshDictionary();        
                            
-            sl = new StockList();
+            stockListGroup = new StockListGroup();
         
-            refreshDictionary();
+            addRandomInstruments();
             
-            goNuts();
-            
-            messageCreator = new MessageCreator();
+            messageCreator = new StockMessageGenerator();
             messageReciever = new StockMessageReciever();
 		}
         
@@ -58,15 +47,12 @@ package config
             }
         }
         
-        private function goNuts():void {
+        private function addRandomInstruments():void {
             for( var i:int = 0; i<100; i++){
                 stockCollection.addItem(new Stock((Math.random()*100000).toString(32).toUpperCase(), Math.random()*10, Math.random() * 100 - 40));
             }
             
             refreshDictionary();
-            //setTimeout(randomize, 50)
         }
-        
-        
 	}
 }
