@@ -12,6 +12,7 @@
             import config.Constants;
             
             import mx.binding.utils.BindingUtils;
+            import mx.binding.utils.ChangeWatcher;
             import mx.events.FlexEvent;
             
             import org.spicefactory.parsley.core.binding.BindingManager;
@@ -22,6 +23,11 @@
             public var stockValue:String=new String();
             [Bindable]
             public var stockChange:String = new String();
+            
+            public var cv1:ChangeWatcher;
+            public var cv2:ChangeWatcher;
+            
+            
                         
             public function setChangeDirection(o:*=null):void {
                 var difference:Number = (data as Stock).yesterday / ( (data as Stock).value - (data as Stock).yesterday) ;
@@ -58,9 +64,12 @@
             
             protected function itemrenderer1_dataChangeHandler(event:FlexEvent = null):void
             {   
-                
-                BindingUtils.bindSetter(setValue, data, "value");
-                BindingUtils.bindSetter(setChangeDirection, data, "value");
+                if(cv1){
+                    cv1.unwatch();
+                    cv2.unwatch();
+                }
+                cv1 = BindingUtils.bindSetter(setValue, data, "value");
+                cv2 = BindingUtils.bindSetter(setChangeDirection, data, "value");
                
                 stockName = (data as Stock).name
                 
