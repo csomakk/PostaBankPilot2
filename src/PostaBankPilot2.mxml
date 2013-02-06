@@ -16,16 +16,13 @@
             import views.StockListGroup;
             
             
+            [Inject]
+            public var stockList:StockListGroup;
             
             protected function application1_creationCompleteHandler(event:FlexEvent):void
             {
-                
-                
-                   
-                   //BindingManager.debugBinding("label.text");
+                //BindingManager.debugBinding("label.text");
                 dispatchEvent(new Event("configureView"));    
-                addEventListener(Event.ENTER_FRAME,f1,false,0,true)
-                addEventListener(Event.ENTER_FRAME,f1,false,1000,true)
             }
             
             [Init]
@@ -34,20 +31,7 @@
                 addElement(stockList);
             }
             
-            protected function f1(event:Event):void
-            {
-                
-                trace(getTimer())   
-            }
             
-            protected function f2(event:Event):void
-            {
-                trace()   
-                //willTrigger()
-            }
-            
-            [Inject]
-            public var stockList:StockListGroup;
             
         ]]>
     </fx:Script>
