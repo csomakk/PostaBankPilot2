@@ -6,11 +6,6 @@
         <![CDATA[
             import Classes.ConfigurableArrayCollection;
             
-            import config.AppContext;
-            
-            import mx.collections.ArrayCollection;
-            import mx.events.FlexEvent;
-            
             [Inject]
             public var ac:ConfigurableArrayCollection;
             

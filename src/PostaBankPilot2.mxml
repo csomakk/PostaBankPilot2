@@ -11,8 +11,6 @@
             import mx.binding.*;
             import mx.events.FlexEvent;
             
-            import org.spicefactory.parsley.core.binding.BindingManager;
-            
             import views.StockListGroup;
             
             
@@ -21,13 +19,11 @@
             
             protected function application1_creationCompleteHandler(event:FlexEvent):void
             {
-                //BindingManager.debugBinding("label.text");
                 dispatchEvent(new Event("configureView"));    
             }
             
             [Init]
             public function parsleyInit():void{
-                trace("PostaBankPilot2: parsleyInit")
                 addElement(stockList);
             }
             

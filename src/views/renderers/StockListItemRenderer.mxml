@@ -15,17 +15,26 @@
             import mx.binding.utils.ChangeWatcher;
             import mx.events.FlexEvent;
             
-            import org.spicefactory.parsley.core.binding.BindingManager;
-            
             [Bindable]
             public var stockName:String = new String();
+            
             [Bindable]
             public var stockValue:String=new String();
+            
             [Bindable]
             public var stockChange:String = new String();
             
             public var cv1:ChangeWatcher;
             public var cv2:ChangeWatcher;
+            
+            private static var RED_GRADIENT_1:uint = 0xA63F3F;
+            private static var RED_GRADIENT_2:uint = 0x8C2A26;
+            private static var RED_GRADIENT_3:uint = 0x862D28;
+            private static var RED_EDGE:uint = 0x691e1c;
+            private static var GREEN_GRADIENT_1:uint = 0x8CB15B;
+            private static var GREEN_GRADIENT_2:uint = 0x709635;
+            private static var GREEN_GRADIENT_3:uint = 0x6B9135;
+            private static var GREEN_EDGE:uint = 0x3E6310;
             
             
                         
@@ -35,17 +44,17 @@
                                
                 if(difference < 0) {
                     absDifference = -difference;
-                    gradient1.color = 0xA63F3F;
-                    gradient2.color = 0x8C2A26;
-                    gradient3.color = 0x862D28;
-                    edgeRectFillColor.color = 0x691e1c;
+                    gradient1.color = RED_GRADIENT_1;
+                    gradient2.color = RED_GRADIENT_2;
+                    gradient3.color = RED_GRADIENT_3;
+                    edgeRectFillColor.color = RED_EDGE;
                     changeDirectionTetxt.text = "-"
                 } else {
                     absDifference = difference;
-                    gradient1.color = 0x8CB15B;
-                    gradient2.color = 0x709635;
-                    gradient3.color = 0x6B9135;
-                    edgeRectFillColor.color = 0x3E6310;
+                    gradient1.color = GREEN_GRADIENT_1;
+                    gradient2.color = GREEN_GRADIENT_2;
+                    gradient3.color = GREEN_GRADIENT_3;
+                    edgeRectFillColor.color = GREEN_EDGE;
                     changeDirectionTetxt.text = "+"
                 } 
                 if(absDifference > 10) {
@@ -68,10 +77,11 @@
                     cv1.unwatch();
                     cv2.unwatch();
                 }
+                
                 cv1 = BindingUtils.bindSetter(setValue, data, "value");
                 cv2 = BindingUtils.bindSetter(setChangeDirection, data, "value");
                
-                stockName = (data as Stock).name
+                stockName = (data as Stock).name;
                 
             }
             

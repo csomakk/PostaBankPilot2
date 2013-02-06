@@ -21,9 +21,9 @@ package Classes
         [Init]
         public function randomize():void
         {
-            stockCollection.turnOff();
+            stockCollection.turnOffDispatcher();
             
-            for( var i:int = 0; i < 50; i++) {
+            for( var i:int = 0; i < 50; i++ ) {
                 var stop:int = Math.random()*10;
                 var array:StockMessageArray = new StockMessageArray();
                 for(var j:int = 0; j < stop; j++){
@@ -39,7 +39,7 @@ package Classes
                 dispatcher(array);
             }
             
-            stockCollection.turnOn();
+            stockCollection.turnOnDispatcher();
             
             setTimeout(randomize, 50);
         }

@@ -20,10 +20,10 @@ package Classes
             return false;
         }
         
-        public function turnOff():void{
+        public function turnOffDispatcher():void{
             dispatcherOn = false;
         }
-        public function turnOn():void{
+        public function turnOnDispatcher():void{
             dispatcherOn = true;
         }
     }
