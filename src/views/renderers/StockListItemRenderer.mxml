@@ -68,6 +68,10 @@
             
         ]]>
     </fx:Script>
+    <s:states>
+        <s:State name="State1"/>
+        <s:State name="aa"/>
+    </s:states>
     <s:Rect x="429" y="10" width="170" height="68" radiusX="15" radiusY="15">
         <s:fill>
             <s:SolidColor id="edgeRectFillColor" />
@@ -92,11 +96,11 @@
              color="#FFFFFF" 
              fontSize="45" fontWeight="bold" 
              text="{stockName}"/>
-    <s:Label x="206" y="25" width="211"  height="45" 
+    <s:Label x="206" y="25" width="211"  height="45"
              color="#000000" fontSize="45" 
              fontWeight="bold" 
              text="{stockValue}"
-             textAlign="right"/>
+             textAlign="right" />
     <s:Label x="206" y="27" width="211"  height="45" 
              color="#FFFFFF" fontSize="45" 
              fontWeight="bold" 
